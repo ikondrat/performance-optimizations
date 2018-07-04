@@ -1,42 +1,17 @@
-// Import React
 import React, { Component } from "react";
-
-// Import Spectacle Core tags
+import styled from "styled-components";
 import {
-  BlockQuote,
-  Cite,
   Deck,
   Heading,
-  ListItem,
+  ListItem as FormidableListItem,
   List,
-  Quote,
   Slide,
   Link as FormidableLink,
-  Text as FormidableText,
-  Table,
-  TableHeader,
-  TableRow,
-  TableBody,
-  TableHeaderItem,
-  TableItem
+  Text as FormidableText
 } from "spectacle";
 
-const Text = ({children}) => (
-  <FormidableText textColor='secondary' textAlign='left'>
-    {children}
-  </FormidableText>
-);
-
-const Link = ({children, href}) => (
-  <FormidableLink href={href} textColor='secondary'>
-    {children}
-  </FormidableLink>
-);
-
-// Import theme
 import createTheme from "spectacle/lib/themes/default";
 
-// Require CSS
 require("normalize.css");
 
 const theme = createTheme({
@@ -52,6 +27,50 @@ const theme = createTheme({
   secondary: "Garamond"
 });
 
+const Text = styled(FormidableText)`
+  &&& {
+    text-align: left;
+    color: rgba(255, 255, 255, 0.8);
+  }
+`;
+
+const Link = styled(FormidableLink)`
+  color: rgba(255, 255, 255, 0.9);
+`;
+
+const Header1 = styled(Heading)`
+  &&& {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 5rem;
+  }
+`;
+
+const Header2 = styled(Heading)`
+  &&& {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 4rem;
+  }
+`;
+
+const HeaderTeaser = styled(Header1)`
+  &&& {
+    text-align: right;
+    margin-top: 5rem;
+  }
+`;
+
+const ListItem = styled(FormidableListItem)`
+  &&& {
+    margin: 1rem 0;
+  }
+`;
+
+const ListFolded = styled(List)`
+  &&& {
+    margin-left: 2rem;
+  }
+`;
+
 const images = {
   seo: require('../assets/seo.png'),
   begging: require('../assets/begging.png'),
@@ -61,7 +80,13 @@ const images = {
   easy: require('../assets/easy.png'),
   lost: require('../assets/lost.png'),
   visitors: require('../assets/visitors.png'),
-  smile: require('../assets/smile.svg')
+  smile: require('../assets/smile.svg'),
+  strategies: require('../assets/strategies.png'),
+  network: require('../assets/network.png'),
+  rendering: require('../assets/rendering.png'),
+  renderingReact: require('../assets/rendering-react.png'),
+  lifecycle: require('../assets/lifecycle.png'),
+  architecture: require('../assets/architecture.png')
 };
 
 export default class Presentation extends Component {
@@ -69,24 +94,24 @@ export default class Presentation extends Component {
     return (
       <Deck transition={["slide"]} transitionDuration={100} theme={theme}>
         <Slide transition={["zoom"]} bgColor="black">
-          <Heading size={1} caps lineHeight={1}>
+          <Header1>
             Performance optimization stategies
-          </Heading>
+          </Header1>
         </Slide>
         <Slide transition={["slide"]} bgColor="black">
-          <Heading fit caps lineHeight={1}>
+          <Header1>
             Why?
-          </Heading>
+          </Header1>
         </Slide>
         <Slide transition={["slide"]} bgImage={images.seo}>
-          <Heading size={1} caps lineHeight={1} textAlign="right" textColor="primary">
+          <HeaderTeaser>
             Seo?
-          </Heading>
+          </HeaderTeaser>
         </Slide>
         <Slide transition={["slide"]} bgImage={images.seo} bgDarken={0.6} textAlign="left">
-          <Heading size={2} caps textAlign="left">
+          <Header2>
             Seo
-          </Heading>
+          </Header2>
           <List>
             <ListItem>
               <Link href="https://goo.gl/JKQWr1">TTFB under the 200ms</Link>
@@ -119,62 +144,62 @@ export default class Presentation extends Component {
           </List>
         </Slide>
         <Slide transition={["slide"]} bgImage={images.seo} bgDarken={0.5}>
-          <Heading size={2} textAlign="left">
+          <Header2>
             Seo recommendations
-          </Heading>
+          </Header2>
           <List>
             <ListItem>
-              <Link textColor="secondary" href="https://goo.gl/aR5so1">Check SEO recommendations from Google</Link>
+              <Link href="https://goo.gl/aR5so1">Check SEO recommendations from Google</Link>
             </ListItem>
             <ListItem>
-              <Link textColor="secondary" href="https://goo.gl/zW5nQH">Look at metrics explanation</Link>
+              <Link  href="https://goo.gl/zW5nQH">Look at metrics explanation</Link>
             </ListItem>
           </List>
         </Slide>
-        <Slide transition={["slide"]} bgImage={images.visitors}>
-          <Heading size={1} lineHeight={1} textAlign="right" textColor="textColorAux">
+        <Slide transition={["slide"]} bgImage={images.visitors} bgDarken={0.1}>
+          <HeaderTeaser>
             What about users?
-          </Heading>
+          </HeaderTeaser>
         </Slide>
-        <Slide transition={["slide"]} bgImage={images.begging}>
-          <Heading size={3} lineHeight={1} textAlign="left" textColor="textColorAux">
+        <Slide transition={["slide"]} bgImage={images.begging} bgDarken={0.1}>
+          <HeaderTeaser>
             Please take a look at our lovely promo video
-          </Heading>
+          </HeaderTeaser>
         </Slide>
-        <Slide transition={["slide"]} bgImage={images.design}>
-          <Heading size={3} lineHeight={1} textAlign="right" textColor="textColorAux">
+        <Slide transition={["slide"]} bgImage={images.design} bgDarken={0.1}>
+          <HeaderTeaser>
             We created nice design with animations
-          </Heading>
+          </HeaderTeaser>
         </Slide>
-        <Slide transition={["slide"]} bgImage={images.lost}>
-          <Heading size={3} lineHeight={1} textAlign="right" textColor="textColorAux">
+        <Slide transition={["slide"]} bgImage={images.lost} bgDarken={0.1}>
+          <HeaderTeaser>
             Answer?
-          </Heading>
+          </HeaderTeaser>
         </Slide>
-        <Slide transition={["slide"]} bgImage={images.seo} bgDarken={0.4}>
-          <Heading size={2} caps textAlign="left">
+        <Slide transition={["slide"]} bgColor="black">
+          <Header2>
             Lost Revenue
-          </Heading>
+          </Header2>
           <List>
             <ListItem>
-              <Link textColor="secondary" href="https://www.doubleclickbygoogle.com/articles/mobile-speed-matters/">
+              <Link href="https://www.doubleclickbygoogle.com/articles/mobile-speed-matters/">
                 53% of mobile site visits are abandoned if pages take longer than 3 seconds to load
               </Link>
             </ListItem>
             <ListItem>
-              <Link textColor="secondary" href="https://www.nngroup.com/articles/how-long-do-users-stay-on-web-pages/">Leaving is very high during first few seconds</Link>
+              <Link href="https://www.nngroup.com/articles/how-long-do-users-stay-on-web-pages/">Leaving is very high during first few seconds</Link>
             </ListItem>
           </List>
         </Slide>
         <Slide transition={["slide"]} bgImage={images.define}>
-          <Heading size={1} caps fits lineHeight={1} textColor="textColorAux">
+          <Header1>
             Spot your problem
-          </Heading>
+          </Header1>
         </Slide>
         <Slide transition={["slide"]} bgImage={images.define} bgDarken={0.6} textAlign="left">
-          <Heading size={2} textAlign="left">
+          <Header2>
             Tools
-          </Heading>
+          </Header2>
           <List>
             <ListItem>
               <Link href="https://www.webpagetest.org/">Webpagetest</Link>
@@ -193,23 +218,21 @@ export default class Presentation extends Component {
             </ListItem>
           </List>
         </Slide>
-        <Slide transition={["slide"]} bgImage={images.hard}>
-          <Text textColor="textColorAux">
-            I spent a day to optimize this function from N2 to NLogN but it still takes more than half a second to prepare the response
+        <Slide transition={["slide"]} bgImage={images.hard} bgDarken={0.1}>
+          <Text>
+            I spent a day to optimize this function from N2 to NLogN but it still takes <strong>more than half a second</strong> to prepare the response
           </Text>
         </Slide>
         <Slide transition={["slide"]} bgImage={images.easy}>
-          <Text textColor="textColorAux">
-          I set transfer encoding to chunked
-          </Text>
-          <Text textColor="textColorAux">
-          Now the response is ready in 20 ms
+          <Text>
+          I set transfer encoding to chunked and
+          now the response is ready in <strong>20 ms</strong>
           </Text>
         </Slide>
-        <Slide transition={["slide"]} bgColor="black">
-          <Heading size={1}>
+        <Slide transition={["slide"]} bgImage={images.strategies} bgDarken={0.4}>
+          <Header2>
             Strategies
-          </Heading>
+          </Header2>
           <List>
             <ListItem>
               Network communications
@@ -225,14 +248,14 @@ export default class Presentation extends Component {
             </ListItem>
           </List>
         </Slide>
-        <Slide transition={["slide"]} bgColor="black">
-          <Heading size={1}>
+        <Slide transition={["slide"]} bgImage={images.network} bgDarken={0.5}>
+          <Header2>
             Network
-          </Heading>
+          </Header2>
           <List>
-            <ListItem margin="1rem 0">
+            <ListItem>
               Reduce cost of the connection
-              <List margin="1rem 2rem">
+              <ListFolded>
                 <ListItem>
                   CDN
                 </ListItem>
@@ -242,11 +265,11 @@ export default class Presentation extends Component {
                 <ListItem>
                   Speeding up TLS handshake
                 </ListItem>
-              </List>
+              </ListFolded>
             </ListItem>
-            <ListItem margin="1rem 0">
+            <ListItem>
               Reduce cost of the transfer
-              <List margin="1rem 2rem">
+              <ListFolded>
                 <ListItem>
                   Cache control
                 </ListItem>
@@ -256,14 +279,14 @@ export default class Presentation extends Component {
                 <ListItem>
                   Advanced compressing algorithms (webp, brotli, zopfli)
                 </ListItem>
-              </List>
+              </ListFolded>
             </ListItem>
           </List>
         </Slide>
-        <Slide transition={["slide"]} bgColor="black" textAlign="right">
-          <Heading size={1}>
+        <Slide transition={["slide"]} bgImage={images.rendering} bgDarken={0.5}>
+          <Header1>
             Rendering
-          </Heading>
+          </Header1>
           <List>
             <ListItem>
               Use windowing e.g. with React virtualized
@@ -276,10 +299,10 @@ export default class Presentation extends Component {
             </ListItem>
           </List>
         </Slide>
-        <Slide transition={["slide"]} bgColor="black">
-          <Heading size={1}>
+        <Slide transition={["slide"]} bgImage={images.renderingReact} bgDarken={0.5}>
+          <Header1>
             Rendering in React
-          </Heading>
+          </Header1>
           <List>
             <ListItem>
               Stateless components
@@ -295,14 +318,14 @@ export default class Presentation extends Component {
             </ListItem>
           </List>
         </Slide>
-        <Slide transition={["slide"]} bgColor="black">
-          <Heading size={2} fits>
+        <Slide transition={["slide"]} bgImage={images.lifecycle} bgDarken={0.5}>
+          <Header2>
             Changes in lifecycle from 16.3
-          </Heading>
+          </Header2>
           <List>
             <ListItem>
               Deprecated lifecycle props
-              <List margin="1rem 2rem">
+              <ListFolded>
                 <ListItem>
                   componentWillMount
                 </ListItem>
@@ -312,7 +335,7 @@ export default class Presentation extends Component {
                 <ListItem>
                   componentWillUpdate
                 </ListItem>
-              </List>
+              </ListFolded>
             </ListItem>
             <ListItem>
               New lifecycle methods
@@ -327,10 +350,10 @@ export default class Presentation extends Component {
             </ListItem>
           </List>
         </Slide>
-        <Slide transition={["slide"]} bgColor="black">
-          <Heading size={1}>
+        <Slide transition={["slide"]} bgImage={images.architecture} bgDarken={0.5}>
+          <Header1>
             Architecture
-          </Heading>
+          </Header1>
           <List>
             <ListItem>
               Avoid big initState
@@ -344,9 +367,9 @@ export default class Presentation extends Component {
           </List>
         </Slide>
         <Slide transition={["slide"]} bgColor="black" bgImage={images.smile} bgRepeat="no-repeat" bgSize="contain" bgDarken={0.5}>
-          <Heading fits size={1}>
+          <Header1>
             Happy spotting!
-          </Heading>
+          </Header1>
           <FormidableText margin="2rem 0 0 " textColor="secondary">
             Kondrat Shmoylov kondrat.shmoylov@gmail.com
           </FormidableText>
