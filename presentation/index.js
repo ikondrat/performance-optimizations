@@ -314,7 +314,7 @@ export default class Presentation extends Component {
               Context API from 16.3
             </ListItem>
             <ListItem>
-              Incoming async rendering changes
+              Upcoming async rendering changes
             </ListItem>
           </List>
         </Slide>
